@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sam Isham - IT Assistant at USD 352 & Fort Hays State University Student | Tech Portfolio">
+    <title>Sam Isham | IT Professional & Tech Builder</title>
+    
+    <!-- Tailwind CSS CDN (kept for beautiful, responsive design without massive custom CSS bloat) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN (icons are essential; self-contained alternatives would require 100+ inline SVGs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --accent: #00d4ff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        /* Tailwind container override for consistent max-width */
+        .tail-container * {
+            font-family: 'Inter', system_ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #0a1729 0%, #112233 100%);
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: #00d4ff;
+            bottom: -8px;
+            left: 0;
+            border-radius: 9999px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00d4ff;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgb(0 212 255 / 0.15);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        /* MOBILE-FIRST IMPROVEMENTS */
+        /* Base mobile styles (no media query needed - Tailwind is mobile-first) */
+        .hero-title {
+            font-size: 2.75rem; /* smaller than original 7xl on mobile */
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4.5rem;
+                letter-spacing: -3px;
+            }
+        }
+        
+        /* Better mobile menu animation */
+        #mobile-menu {
+            animation: slideDown 0.3s ease forwards;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Improved touch targets on mobile */
+        @media (max-width: 767px) {
+            .nav-button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .section-padding {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+        }
+        
+        /* Focus states for better accessibility */
+        .focus-visible:focus {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="tail-container bg-zinc-950 text-white smooth-scroll">
+    <!-- NAVBAR -->
+    <nav class="bg-zinc-950 border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-6 md:px-8 py-4 flex items-center justify-between">
+                <!-- Logo / Name -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-inner">SI</div>
+                    <h1 class="heading-font text-2xl tracking-[-1px]">Sam Isham</h1>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                    <a href="#about" class="nav-link text-white/80 hover:text-white">About</a>
+                    <a href="#experience" class="nav-link text-white/80 hover:text-white">Experience</a>
+                    <a href="#education" class="nav-link text-white/80 hover:text-white">Education</a>
+                    <a href="#skills" class="nav-link text-white/80 hover:text-white">Skills</a>
+                    <a href="#projects" class="nav-link text-white/80 hover:text-white">Projects</a>
+                    <a href="#contact" class="nav-link text-white/80 hover:text-white">Contact</a>
+                </div>
+                
+                <div class="flex items-center gap-x-4">
+                    <a href="https://www.linkedin.com/in/samuel-isham-b674b7264" 
+                       target="_blank"
+                       class="hidden sm:flex items-center gap-x-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-3xl text-sm font-medium border border-white/20">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    
+                    <a href="https://github.com/samisham-collab" 
+                       target="_blank"
+                       class="hidden sm:flex items-center gap-x-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-3xl text-sm font-medium border border-white/20">
+                        <i class="fa-brands fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    
+                    <!-- Mobile Menu Button (FIXED: now properly wired) -->
+                    <button id="mobile-menu-btn"
+                            class="md:hidden nav-button w-11 h-11 flex items-center justify-center text-2xl text-white hover:text-cyan-400 focus-visible:outline-none">
+                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (now animated and fully functional) -->
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-8 border-t border-white/10 bg-zinc-950">
+                <div class="flex flex-col gap-y-2 pt-6 text-base font-medium">
+                    <a href="#about" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">About</a>
+                    <a href="#experience" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">Experience</a>
+                    <a href="#education" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">Education</a>
+                    <a href="#skills" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">Skills</a>
+                    <a href="#projects" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">Projects</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" 
+                       class="py-4 px-6 hover:bg-white/10 rounded-3xl flex items-center">Contact</a>
+                    
+                    <!-- Mobile-only social links -->
+                    <div class="pt-6 mt-6 border-t border-white/10 flex gap-4">
+                        <a href="https://www.linkedin.com/in/samuel-isham-b674b7264" target="_blank"
+                           class="flex-1 flex items-center justify-center gap-x-3 py-4 bg-white/10 hover:bg-white/20 rounded-3xl text-sm font-medium">
+                            <i class="fa-brands fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/samisham-collab" target="_blank"
+                           class="flex-1 flex items-center justify-center gap-x-3 py-4 bg-white/10 hover:bg-white/20 rounded-3xl text-sm font-medium">
+                            <i class="fa-brands fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg pt-20 pb-16 md:pt-24 md:pb-20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7">
+                    <div class="inline-flex items-center gap-x-2 bg-white/10 text-white text-sm font-medium px-6 py-2 rounded-3xl mb-6 border border-white/20">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        Goodland, Kansas • Open to opportunities
+                    </div>
+                    
+                    <h1 class="heading-font hero-title mb-4">
+                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">Sam Isham</span>
+                    </h1>
+                    
+                    <p class="text-2xl md:text-3xl text-white/80 font-medium mb-8">
+                        IT Assistant at USD 352 • Fort Hays State University Student
+                    </p>
+                    
+                    <p class="text-lg md:text-xl text-white/70 max-w-lg mb-10">
+                        Passionate about technology, problem-solving, and building tools that make life easier.
+                        Currently supporting school technology infrastructure while studying Information Technology.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact"
+                           class="inline-flex items-center justify-center px-8 py-4 bg-[#00d4ff] hover:bg-[#00b8e6] text-zinc-950 font-semibold text-lg rounded-3xl">
+                            Get in touch
+                            <i class="fa-solid fa-arrow-right ml-3"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/samuel-isham-b674b7264" target="_blank"
+                           class="inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white/60 rounded-3xl text-lg font-medium">
+                            <i class="fa-brands fa-linkedin mr-3"></i>
+                            View LinkedIn
+                        </a>
+                        <!-- Resume button (placeholder) -->
+                        <a href="#" onclick="alert('Replace this href with your actual resume PDF link!'); return false;"
+                           class="inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white/60 rounded-3xl text-lg font-medium">
+                            <i class="fa-solid fa-download mr-3"></i>
+                            Download Resume
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex flex-wrap items-center gap-x-8 text-sm text-white/60">
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-school"></i>
+                            <span>USD 352</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-university"></i>
+                            <span>Fort Hays State University</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-laptop"></i>
+                            <span>Tech • IT Automation • App Development</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero visual / photo -->
+                <div class="md:col-span-5 flex justify-center md:justify-end">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="w-full h-full bg-gradient-to-br from-cyan-400/20 to-transparent rounded-[4rem] flex items-center justify-center overflow-hidden border border-white/10 shadow-2xl">
+                            <div class="w-[260px] h-[260px] md:w-[340px] md:h-[340px] bg-zinc-800 rounded-3xl flex items-center justify-center text-8xl shadow-2xl border-8 border-white/10 overflow-hidden">
+                                <img src="https://media.licdn.com/dms/image/v2/D5603AQGnJ9xycfeSOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714493672872?e=1777507200&v=beta&t=Q4-cOekTJd9YEziDL39-eOxQ33Z-mx8HkfDmsvrYGDw" 
+                                     alt="Sam Isham"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        
+                        <!-- Floating badges -->
+                        <div class="absolute -top-4 -left-4 bg-white/10 backdrop-blur-xl text-white text-xs font-medium px-5 py-2 rounded-3xl flex items-center gap-x-2 shadow-xl">
+                            <i class="fa-solid fa-laptop text-emerald-400"></i>
+                            IT Automation
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-xl text-white text-xs font-medium px-5 py-2 rounded-3xl flex items-center gap-x-2 shadow-xl">
+                            <i class="fa-solid fa-code text-cyan-400"></i>
+                            App Development
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-6 md:px-8 py-16 md:py-20 section-padding">
+        <div class="grid md:grid-cols-12 gap-12 md:gap-16">
+            <div class="md:col-span-4">
+                <h2 class="section-header text-5xl md:text-5xl heading-font tracking-[-1px] mb-4">About me</h2>
+                <p class="text-white/60 text-lg">Tech enthusiast from the heart of the High Plains</p>
+            </div>
+            <div class="md:col-span-8 text-lg leading-relaxed text-white/80 max-w-2xl">
+                <p class="mb-6">
+                    I'm Sam Isham, currently serving as IT Assistant for USD 352 in Goodland, Kansas, while pursuing my degree at Fort Hays State University.
+                    I help keep our schools running smoothly by troubleshooting hardware, supporting teachers and students, and implementing new technology solutions.
+                </p>
+                <p class="mb-6">
+                    My passion lies at the intersection of education and technology. Whether it's fixing network issues, building practical tools,
+                    or developing applications, I love creating solutions that solve real problems.
+                </p>
+                <p>
+                    When I'm not in the tech lab, you'll find me exploring new coding projects, staying active in the Goodland community,
+                    or thinking about how technology can improve rural education. I'm always learning, always building.
+                </p>
+                
+                <!-- Fun fact / values -->
+                <div class="mt-12 grid grid-cols-3 gap-6 text-center">
+                    <div class="bg-white/5 rounded-3xl p-6">
+                        <div class="text-4xl mb-2">🔧</div>
+                        <div class="font-semibold">Problem Solver</div>
+                        <div class="text-xs text-white/50 mt-1">Hands-on IT support</div>
+                    </div>
+                    <div class="bg-white/5 rounded-3xl p-6">
+                        <div class="text-4xl mb-2">🚀</div>
+                        <div class="font-semibold">Builder</div>
+                        <div class="text-xs text-white/50 mt-1">Apps &amp; automation</div>
+                    </div>
+                    <div class="bg-white/5 rounded-3xl p-6">
+                        <div class="text-4xl mb-2">🌾</div>
+                        <div class="font-semibold">Community Focused</div>
+                        <div class="text-xs text-white/50 mt-1">Goodland, KS roots</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="bg-white/5 py-16 md:py-20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
+            <h2 class="section-header text-5xl heading-font tracking-[-1px] mb-12">Experience</h2>
+            <div class="space-y-12">
+                <!-- Current Role -->
+                <div class="flex flex-col md:flex-row gap-8 card-hover bg-white/10 rounded-3xl p-8 md:p-10">
+                    <div class="md:w-64 flex-shrink-0">
+                        <div class="text-emerald-400 text-sm font-medium">Aug 2025 — Present</div>
+                        <div class="text-2xl font-semibold mt-1">IT Assistant</div>
+                        <div class="text-white/70">USD 352 • Goodland, Kansas</div>
+                    </div>
+                    <div class="flex-1 text-white/80 leading-relaxed">
+                        Provide comprehensive technical support to students, teachers, and staff across the district.
+                        Troubleshoot hardware and software issues, maintain network infrastructure, assist with device deployment,
+                        and help implement new educational technology tools. Passionate about making technology accessible and reliable for rural education.
+                        
+                        <div class="mt-8 flex flex-wrap gap-2">
+                            <span class="text-xs px-4 py-1.5 bg-white/10 rounded-3xl">Hardware Support</span>
+                            <span class="text-xs px-4 py-1.5 bg-white/10 rounded-3xl">Network Troubleshooting</span>
+                            <span class="text-xs px-4 py-1.5 bg-white/10 rounded-3xl">User Training</span>
+                            <span class="text-xs px-4 py-1.5 bg-white/10 rounded-3xl">Device Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Placeholder note -->
+                <div class="text-center text-white/40 text-sm italic py-8">
+                    Add any previous roles, internships, or volunteer tech work here — just copy the card above!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="max-w-screen-2xl mx-auto px-6 md:px-8 py-16 md:py-20">
+        <h2 class="section-header text-5xl heading-font tracking-[-1px] mb-12">Education</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl p-10 card-hover">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="text-3xl font-semibold">Fort Hays State University</div>
+                        <div class="text-cyan-400 mt-1">Bachelor of Science • Expected 2028</div>
+                    </div>
+                    <div class="text-right text-sm text-white/60">
+                        Hays, KS
+                    </div>
+                </div>
+                <p class="mt-8 text-white/70">
+                    Pursuing a degree in Information Technology / Computer Science.
+                    Coursework includes networking, programming, systems administration, and Web Development.
+                </p>
+                <div class="mt-8 text-xs uppercase tracking-widest text-white/50">Relevant Coursework</div>
+                <div class="flex flex-wrap gap-3 mt-3">
+                    <span class="px-5 py-2 bg-white/10 rounded-3xl text-sm">Computer Networks</span>
+                    <span class="px-5 py-2 bg-white/10 rounded-3xl text-sm">Programming Fundamentals</span>
+                    <span class="px-5 py-2 bg-white/10 rounded-3xl text-sm">Database Systems</span>
+                    <span class="px-5 py-2 bg-white/10 rounded-3xl text-sm">Web Development</span>
+                </div>
+            </div>
+            <div class="bg-white/5 rounded-3xl p-10 flex flex-col justify-center">
+                <p class="italic text-lg text-white/70">"FHSU has given me the perfect balance of theory and hands-on experience to complement my real-world work at USD 352."</p>
+                <div class="mt-auto pt-8 text-sm">— Sam Isham</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="bg-white/5 py-16 md:py-20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
+            <h2 class="section-header text-5xl heading-font tracking-[-1px] mb-12">Skills &amp; Tools</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-solid fa-laptop text-4xl text-cyan-400 mb-4"></i>
+                    <div class="font-semibold text-lg">Hardware &amp; Networking</div>
+                    <div class="text-sm text-white/60 mt-1">Troubleshooting • Device Deployment • Basic Networking</div>
+                </div>
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-brands fa-python text-4xl text-emerald-400 mb-4"></i>
+                    <div class="font-semibold text-lg">Programming</div>
+                    <div class="text-sm text-white/60 mt-1">Python • JavaScript • Scripting</div>
+                </div>
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-solid fa-mobile-screen text-4xl text-violet-400 mb-4"></i>
+                    <div class="font-semibold text-lg">App &amp; Web Development</div>
+                    <div class="text-sm text-white/60 mt-1">HTML/CSS • Prototyping • Databases</div>
+                </div>
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-solid fa-database text-4xl text-amber-400 mb-4"></i>
+                    <div class="font-semibold text-lg">Databases &amp; Automation</div>
+                    <div class="text-sm text-white/60 mt-1">SQL • Automation Scripts</div>
+                </div>
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-solid fa-shield-halved text-4xl text-red-400 mb-4"></i>
+                    <div class="font-semibold text-lg">IT Support &amp; Security</div>
+                    <div class="text-sm text-white/60 mt-1">Help Desk • Cybersecurity Basics</div>
+                </div>
+                <div class="bg-white/10 hover:bg-white/15 rounded-3xl p-6 card-hover flex flex-col items-center text-center">
+                    <i class="fa-solid fa-users text-4xl text-sky-400 mb-4"></i>
+                    <div class="font-semibold text-lg">User Training</div>
+                    <div class="text-sm text-white/60 mt-1">Teacher &amp; Student Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-screen-2xl mx-auto px-6 md:px-8 py-16 md:py-20">
+        <h2 class="section-header text-5xl heading-font tracking-[-1px] mb-12">Featured Projects</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="bg-white/10 rounded-3xl overflow-hidden card-hover group">
+                <div class="h-56 bg-gradient-to-br from-violet-900 to-purple-900 flex items-center justify-center text-7xl">📅</div>
+                <div class="p-8">
+                    <div class="font-semibold text-xl mb-2">Appointment Scheduling System</div>
+                    <p class="text-white/70 text-sm mb-6">
+                        Full-stack web application for managing appointments and schedules. Built with database technologies, user authentication, calendar integration, and automated notifications.
+                    </p>
+                    <a href="https://github.com/samisham-collab" target="_blank" 
+                       class="text-cyan-400 flex items-center text-sm font-medium group-hover:gap-x-2">
+                        View on GitHub
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="bg-white/10 rounded-3xl overflow-hidden card-hover group">
+                <div class="h-56 bg-gradient-to-br from-violet-900 to-blue-900 flex items-center justify-center text-7xl">📱</div>
+                <div class="p-8">
+                    <div class="font-semibold text-xl mb-2">School App Development Prototypes</div>
+                    <p class="text-white/70 text-sm mb-6">
+                        Exploring mobile and web apps to enhance student engagement and streamline school operations at USD 352.
+                        Currently building proof-of-concept tools for attendance and resource tracking.
+                    </p>
+                    <a href="https://github.com/samisham-collab" target="_blank" 
+                       class="text-cyan-400 flex items-center text-sm font-medium group-hover:gap-x-2">
+                        View on GitHub
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="bg-white/10 rounded-3xl overflow-hidden card-hover group">
+                <div class="h-56 bg-gradient-to-br from-amber-900 to-red-900 flex items-center justify-center text-7xl">🛠️</div>
+                <div class="p-8">
+                    <div class="font-semibold text-xl mb-2">World Cup Relational Database</div>
+                    <p class="text-white/70 text-sm mb-6">
+                        A freeCodeCamp Project that organizes databases as well as uses bash to manipulate the DB
+                    </p>
+                    <a href="https://github.com/samisham-collab" target="_blank" 
+                       class="text-cyan-400 flex items-center text-sm font-medium group-hover:gap-x-2">
+                        View on GitHub
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <p class="text-center text-white/40 text-sm mt-12">
+            More projects on GitHub • 
+            <a href="https://github.com/samisham-collab" target="_blank" class="text-cyan-400 hover:underline">github.com/samisham-collab</a>
+        </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bg-white/5 py-16 md:py-20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
+            <div class="grid md:grid-cols-12 gap-12 md:gap-16">
+                <div class="md:col-span-5">
+                    <h2 class="section-header text-5xl heading-font tracking-[-1px]">Let's connect</h2>
+                    <p class="text-2xl text-white/70 mt-6 max-w-md">
+                        Whether you're looking for a tech collaborator, have a question about rural IT, or just want to chat about robotics — I'm all ears.
+                    </p>
+                    
+                    <div class="mt-12 space-y-8">
+                        <a href="mailto:samuelisham007@gmail.com" class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">✉️</div>
+                            <div>
+                                <div class="text-sm text-white/60">Email me</div>
+                                <div class="text-xl group-hover:text-cyan-400">samuelisham007@gmail.com</div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/samuel-isham-b674b7264" target="_blank" class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">🔗</div>
+                            <div>
+                                <div class="text-sm text-white/60">Connect on LinkedIn</div>
+                                <div class="text-xl group-hover:text-cyan-400">Samuel Isham</div>
+                            </div>
+                        </a>
+                        <div class="flex items-center gap-x-6">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">📍</div>
+                            <div>
+                                <div class="text-sm text-white/60">Based in</div>
+                                <div class="text-xl">Goodland, Kansas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact form -->
+                <div class="md:col-span-7 bg-zinc-900 rounded-3xl p-8 md:p-10">
+                    <form id="contact-form" onsubmit="handleSubmit(event)" class="space-y-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Your name" required
+                                   class="bg-white/10 border border-white/10 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder:text-white/40 focus-visible:outline-none">
+                            <input type="email" placeholder="Your email" required
+                                   class="bg-white/10 border border-white/10 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder:text-white/40 focus-visible:outline-none">
+                        </div>
+                        <input type="text" placeholder="Subject"
+                               class="w-full bg-white/10 border border-white/10 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder:text-white/40 focus-visible:outline-none">
+                        <textarea placeholder="Your message..." rows="5" required
+                                  class="w-full bg-white/10 border border-white/10 focus:border-cyan-400 rounded-3xl px-6 py-5 outline-none text-white placeholder:text-white/40 focus-visible:outline-none resize-none"></textarea>
+                        
+                        <button type="submit"
+                                class="w-full py-6 bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-zinc-950 font-semibold text-xl rounded-3xl flex items-center justify-center gap-x-3">
+                            Send message
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-8 text-white/50 text-sm">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-y-4">
+            <div>© 2026 Sam Isham. Built with ❤️ and Tailwind.</div>
+            <div class="flex items-center gap-x-8 text-xs">
+                <a href="https://www.linkedin.com/in/samuel-isham-b674b7264" target="_blank" class="hover:text-white">LinkedIn</a>
+                <a href="https://github.com/samisham-collab" target="_blank" class="hover:text-white">GitHub</a>
+                <a href="#" onclick="alert('Replace this href with your actual resume PDF link!'); return false;" class="hover:text-white">Resume</a>
+            </div>
+            <div class="text-xs">Made as a custom portfolio for Sam Isham • Goodland, KS</div>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * MOBILE MENU TOGGLE (now fully functional)
+         */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('menu-icon')
+            
+            if (!menu || !icon) return
+            
+            menu.classList.toggle('hidden')
+            
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars')
+                icon.classList.add('fa-xmark')
+            } else {
+                icon.classList.remove('fa-xmark')
+                icon.classList.add('fa-bars')
+            }
+        }
+        
+        /**
+         * CONTACT FORM HANDLER (demo)
+         */
+        function handleSubmit(e) {
+            e.preventDefault()
+            
+            // Demo success message
+            const button = e.target.querySelector('button[type="submit"]')
+            const originalText = button.innerHTML
+            
+            button.innerHTML = `
+                <span class="flex items-center justify-center gap-x-3">
+                    <i class="fa-solid fa-check"></i>
+                    Message sent!
+                </span>
+            `
+            button.style.background = 'rgb(16 185 129)'
+            
+            setTimeout(() => {
+                alert("✅ Thank you! Your message has been received. (This is a demo — in production this would send an email)")
+                e.target.reset()
+                button.innerHTML = originalText
+                button.style.background = ''
+            }, 1500)
+        }
+        
+        /**
+         * INITIALIZE EVERYTHING (mobile-first fixes applied)
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // FIXED: Wire up the mobile menu button (this was the main bug!)
+            const mobileBtn = document.getElementById('mobile-menu-btn')
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', toggleMobileMenu)
+            }
+            
+            // Tailwind script is already loaded — no extra config needed for this design
+            
+            console.log('%c✅ Sam Isham Portfolio loaded successfully! (Mobile-first + fully functional)', 
+                        'color:#00d4ff; font-family:Space Grotesk; font-size:13px; font-weight:600')
+            
+            // Optional: Close mobile menu when pressing Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const menu = document.getElementById('mobile-menu')
+                    if (menu && !menu.classList.contains('hidden')) {
+                        toggleMobileMenu()
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
